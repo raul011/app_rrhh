@@ -3,6 +3,7 @@ import 'package:si2/screens/login_screen.dart';
 import 'package:si2/screens/perfil_usuario.dart';
 import 'package:si2/screens/registroAsistencia_screen.dart';
 import 'package:si2/services/session_service.dart';
+import 'package:si2/screens/solicitud_licencia.dart';
 
 class HomeScreen extends StatefulWidget {
   // const HomeScreen({super.key, required this.userRole}); //  Constructor modificado
@@ -103,6 +104,26 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context, // Cambia ReservationsScreen() por CardFieldTest()
                 MaterialPageRoute(builder: (context) => LocationHomePage()),
+                //  MaterialPageRoute(builder: (context) => PaymentScreen()),
+              );
+            },
+            color1: const Color.fromARGB(255, 15, 202, 177),
+            color2: const Color.fromARGB(255, 20, 125, 200),
+          ),
+
+          _buildMenuCard(
+            context,
+            icon: Icons.event,
+            title: 'Licencia',
+            subtitle: 'Solicita tu licencia',
+            onTap: () {
+              _cargarSesion();
+
+              Navigator.push(
+                context, // Cambia ReservationsScreen() por CardFieldTest()
+                MaterialPageRoute(
+                  builder: (context) => SolicitarLicenciaScreen(),
+                ),
                 //  MaterialPageRoute(builder: (context) => PaymentScreen()),
               );
             },

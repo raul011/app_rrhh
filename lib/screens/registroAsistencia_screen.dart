@@ -30,9 +30,9 @@ class _LocationHomePageState extends State<LocationHomePage> {
     // Para que el dominio del tenant funcione, puedes usar nip.io:
     const String apiUrl =
         //'http://empresa1.10.0.2.2.nip.io:8000/api/location-records';
-        'http://empresa1.192.168.0.184.nip.io:8000/api/location-records';
-    //'http://empresa1.192.168.0.184:8000/api/location-records';
-    //'http://192.168.0.184:8000/api/location-records';
+        // 'http://empresa1.192.168.0.184.nip.io:8000/api/location-records';
+        //'http://empresa1.172.20.10.6.nip.io:8000/api/location-records';
+        'http://empresa1.192.168.43.184.nip.io:8000/api/location-records';
 
     try {
       // MODIFICADO: Añadimos el nombre al cuerpo de la petición.

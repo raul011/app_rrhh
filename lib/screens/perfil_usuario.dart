@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
+import '../services/session_service.dart'; // 👈 importa tu SessionService
 
-class PerfilUsuarioScreen extends StatelessWidget {
+class PerfilUsuarioScreen extends StatefulWidget {
   const PerfilUsuarioScreen({super.key});
+
+  @override
+  State<PerfilUsuarioScreen> createState() => _PerfilUsuarioScreenState();
+}
+
+class _PerfilUsuarioScreenState extends State<PerfilUsuarioScreen> {
+  String? nombre;
+  String? email;
+  String? tenant;
+
+  @override
+  void initState() {
+    super.initState();
+    _cargarUsuario();
+  }
+
+  Future<void> _cargarUsuario() async {
+    final user = await SessionService.obtenerUsuario();
+    setState(() {
+      nombre = user['name'];
+      email = user['email'];
+      tenant = user['tenant_id'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,47 +56,35 @@ class PerfilUsuarioScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Raul Osinaga', // Dato harcodeado
-              style: TextStyle(
+
+            // 👇 Aquí usamos lo que cargamos de SharedPreferences
+            Text(
+              nombre ?? 'Cargando...',
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'raul.osinaga@uagrm.edu.bo', // Dato harcodeado
-              style: TextStyle(fontSize: 16, color: Color(0xFF8B8B9E)),
+            Text(
+              email ?? '',
+              style: const TextStyle(fontSize: 16, color: Color(0xFF8B8B9E)),
             ),
+
             const SizedBox(height: 32),
             const Divider(color: Color(0xFF3A3A4E)),
+
             _buildInfoCard(
               icon: Icons.circle,
               label: 'Estado',
               value: 'Activo',
-              iconColor: const Color(0xFF4ADE80), // Verde brillante
+              iconColor: const Color(0xFF4ADE80),
             ),
             _buildInfoCard(
               icon: Icons.badge_outlined,
-              label: 'Registro',
-              value: '219072144', // Dato harcodeado
-            ),
-            _buildInfoCard(
-              icon: Icons.school_outlined,
-              label: 'Carrera',
-              value: 'Ing. Informática', // Dato harcodeado
-            ),
-
-            _buildInfoCard(
-              icon: Icons.credit_card_outlined,
-              label: 'CI',
-              value: '12345678 SC', // Dato harcodeado
-            ),
-            _buildInfoCard(
-              icon: Icons.home_outlined,
-              label: 'Dirección',
-              value: 'Av. Busch, 3er Anillo', // Dato harcodeado
+              label: 'Tenant',
+              value: tenant ?? '',
             ),
           ],
         ),
@@ -95,11 +108,7 @@ class PerfilUsuarioScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: iconColor ?? const Color(0xFF00D9D9),
-            size: 24, // Ajustado para el círculo
-          ),
+          Icon(icon, color: iconColor ?? const Color(0xFF00D9D9), size: 24),
           const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

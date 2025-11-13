@@ -17,7 +17,11 @@ class ApiService {
   //ApiService({this.baseUrl = 'http://3.129.13.240:8000/api'});
   //ApiService({this.baseUrl = 'http://172.20.10.6:5000/api'});
   //ApiService({this.baseUrl = 'http://192.168.0.184:5000/api'});
+  // ApiService({this.baseUrl = 'http://empresa1.192.168.0.184.nip.io:8000/api'});
+  //ApiService({this.baseUrl = 'http://empresa1.172.20.10.6.nip.io:8000/api'});
+  //ApiService({this.baseUrl = 'http://empresa1.192.168.43.184.nip.io:8000/api'});
   ApiService({this.baseUrl = 'http://empresa1.192.168.0.184.nip.io:8000/api'});
+  //ApiService({this.baseUrl = 'http://empresa1.192.168.43.184.nip.io:8000/api'});
   static const Map<String, String> _defaultHeaders = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
